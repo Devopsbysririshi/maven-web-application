@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- META SECTION -->
+    <title>GET PRODUCT DETAILS</title>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+    <!-- END META SECTION -->
+    <!--  BEGIN STYLE -->
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 1px;
+        }
+    </style>
+    <!--  END STYLE -->
+
+</head>
+<body>
+<form action="#" th:action="@{searchbyid}" th:object="${search}">
+<h1>Search Product</h1>
+    <label for="search_input">Search:</label> <input name="search"
+                                                     id="search"/>
+  
+    <div th:if="${not #lists.isEmpty(search)}">
+        <h2>Search Results</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+				<th>NAME</th>
+				<th>CATEGORY</th>
+				<th>STATUS</th>
+				<th>DETAILS</th>
+				<th>SPECIFICATION</th>
+				<th>WEIGHT</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="search : ${search}">
+                <td th:text="${search.productId}"></td>
+                <td th:text="${search.productName}"></td>
+                <td th:text="${search.Category}">Text ...</td>
+                <td th:text="${search.productStatus}">Text...</td>
+                <td th:text="${search.productDescription.details}">Text...</td>
+                <td th:text="${search.productDescription.specification}">Text...</td>
+                <td th:text="${search.productDescription.weight}">Text...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+</body>
+</html>

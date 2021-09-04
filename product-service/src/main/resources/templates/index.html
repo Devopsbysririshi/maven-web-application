@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Product List</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+
+</head>
+<body>
+	<h1>Product Details</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>ID</th>
+			<th>NAME</th>
+			<th>CATEGORY</th>
+			<th>STATUS</th>
+			<th>DETAILS</th>
+			<th>SPECIFICATION</th>
+			<th>WEIGHT</th>
+			<th>ACTIONS</th>
+
+		</tr>
+		<tr th:each="product:${products}">
+			<td th:utext="${product.productId}"></td>
+			<td th:utext="${product.productName}"></td>
+			<td th:utext="${product.category}"></td>
+			<td th:utext="${product.productStatus}"></td>
+			<td th:utext="${product.productDescription.details}"></td>
+			<td th:utext="${product.productDescription.specification}"></td>
+			<td th:utext="${product.productDescription.weight}"></td>
+			<td><a
+				th:href="@{/delete/{productId}(productId=${product.productId})}"
+				class="btn btn-danger">DELETE</a></td>
+		</tr>
+	</table>
+
+	<a href="/add" class="btn btn-success">ADD PRODUCT</a>
+	<a href="/search" class="btn btn-success">SEARCH PRODUCT</a>
+</body>
+</html>

@@ -1,0 +1,7 @@
+com\meru\ecommerce\product\productservice\web\ProductController.class
+com\meru\ecommerce\product\productservice\entity\ProductDescription.class
+com\meru\ecommerce\product\productservice\service\ProductService.class
+com\meru\ecommerce\product\productservice\dao\ProductRepository.class
+com\meru\ecommerce\product\productservice\ProductServiceApplication.class
+com\meru\ecommerce\product\productservice\entity\Product.class
+com\meru\ecommerce\product\productservice\service\ProductServiceImpl.class
