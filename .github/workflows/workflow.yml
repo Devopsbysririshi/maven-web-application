@@ -1,0 +1,44 @@
+name: Java Maven CI/CD
+
+on:
+  push:
+    branches:
+      - main  # Change this to your default branch name
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'  # Change this to the desired Java version
+
+    - name: Build with Maven
+      run: mvn package --quiet --batch-mode
+
+    - name: Run Tests
+      run: mvn test --quiet --batch-mode
+
+  deploy:
+    name: Deploy to Server
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up SSH keys
+      uses: webfactory/ssh-agent@v0.4.2
+      with:
+        ssh-private-key: ${{ secrets.DEPLOY_SSH_PRIVATE_KEY }}
+      
+    - name: Deploy via SSH
+      run: |
+        ssh user@your-server-ip "cd /path/to/deployment && git pull origin main && mvn clean package && ./start.sh"
